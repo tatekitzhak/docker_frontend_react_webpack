@@ -1,43 +1,23 @@
-import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 
-import StockApp from '@/components/stockListingTable';
+// project imports
+import App from 'App';
+import ReduxStoreWrapper from '@/store/index';
 
-/**
- * 
- */
-import Person from '@/components/person/personApp';
+// style + assets
+//import '@/assets/scss/style.scss';
+import config from './config';
 
-/**
- * 
- */
-import Counter from '@/components/counter/Couter';
-
-/**
- * 
- */
-import Layout from '@/components/pages/Layout';
-
-/**
- * Pricing
- */
-import Pricing from '@/components/pricing';
-
-/**
- * 
- */
-
-import DisplayFruitsList from '@/components/displayFruitsList';
-
-// Test import of styles
-import '@/styles/index.scss'
-
-
+// ==============================|| REACT DOM RENDER  ||============================== //
 const container = document.getElementById('root');
-const root = createRoot(container);
-
-
+const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(
     <>
-        <Pricing />
-    </>);
+        <ReduxStoreWrapper>
+            <BrowserRouter basename={config.basename}>
+                <App />
+            </BrowserRouter>
+        </ReduxStoreWrapper>
+    </>
+);
